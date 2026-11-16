@@ -1,6 +1,6 @@
 {
-"appId": "com.finanstakip.app",
-"appName": "Finans Takip Paneli",
-"webDir": ".",
-"bundledWebRuntime": false
+  "appId": "com.finanstakip.app",
+  "appName": "FinansTakip",
+  "webDir": "www",
+  "bundledWebRuntime": false
 }
