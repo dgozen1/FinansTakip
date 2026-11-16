@@ -1,3 +1,16 @@
+name: Build Android APK
+
+on:
+push:
+branches: [ main, master ]
+pull_request:
+branches: [ main, master ]
+
+jobs:
+build:
+name: Android APK Build
+runs-on: ubuntu-latest
+
 steps:
   - name: Checkout Repository
     uses: actions/checkout@v3
@@ -13,9 +26,12 @@ steps:
       distribution: 'temurin'
       java-version: '17'
 
-  - name: Install Dependencies & Capacitor Android
+  - name: Install Dependencies
+    run: npm install
+
+  - name: Init Capacitor Android
     run: |
-      npm install
+      npx cap init FinansTakip com.finanstakip.app --web-dir . --yes || true
       npx cap add android || true
       npx cap sync android
 
