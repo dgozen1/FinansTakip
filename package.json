@@ -1,15 +1,14 @@
 {
-"name": "finans-takip-asistani",
-"version": "1.0.0",
-"description": "Varlık, Alım-Satım Geçmişi ve Harcama Yönetimi",
-"main": "index.html",
-"scripts": {
-"build": "echo 'OK'"
-},
-"dependencies": {},
-"devDependencies": {
-"@capacitor/cli": "^5Package Config.0.0",
-"@capacitor/core": "^5.0.0",
-"@capacitor/android": "^5.0.0"
-}
+  "name": "finans-takip",
+  "version": "1.0.0",
+  "description": "Kişisel Finans ve Vortföy Takip Uygulaması",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.5.1",
+    "@capacitor/cli": "^5.5.1",
+    "@capacitor/core": "^5.5.1"
+  }
 }
