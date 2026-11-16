@@ -29,9 +29,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Init Capacitor Android
+      - name: Add Android Platform & Sync
         run: |
-          npx cap init FinansTakip com.finanstakip.app --web-dir . --yes || true
           npx cap add android || true
           npx cap sync android
 
