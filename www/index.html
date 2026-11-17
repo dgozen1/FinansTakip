@@ -130,39 +130,35 @@
                 </form>
             </div>
 
-            <!-- Varlıklar Tablosu (Mobil uyumlu: Büyük ekranda tablo, mobilde 1 kayıt 2 satırlık kartlar) -->
+            <!-- Varlıklar Tablosu -->
             <div class="bg-slate-900/90 border border-slate-800 rounded-3xl shadow-xl overflow-hidden">
                 <div class="p-5 border-b border-slate-800 font-bold text-slate-200 flex justify-between items-center flex-wrap gap-2">
                     <span>Aktif Portföy Listesi</span>
                     <span class="text-xs text-slate-400 font-normal">Canlı fiyatları güncelleyebilir veya düzenleyebilirsiniz.</span>
                 </div>
                 
-                <!-- Masaüstü Geniş Ekran Tablosu -->
+                <!-- Masaüstü Tablo -->
                 <div class="hidden md:block overflow-x-auto">
-                    <table class="w-full text-left text-xs whitespace-nowrap">
+                    <table class="w-full text-left text-[11px] whitespace-nowrap">
                         <thead class="bg-slate-950/60 text-slate-400 border-b border-slate-800 uppercase tracking-wider">
                             <tr>
-                                <th class="p-3">Alım Tarihi</th>
-                                <th class="p-3">Tür</th>
-                                <th class="p-3">Varlık / Açıklama</th>
-                                <th class="p-3">Miktar</th>
-                                <th class="p-3">Ort. Alış</th>
-                                <th class="p-3">Güncel Fiyat</th>
-                                <th class="p-3">Toplam Değer</th>
-                                <th class="p-3">Kar / Zarar</th>
-                                <th class="p-3 text-center">İşlemler</th>
+                                <th class="p-2.5">Alım Tarihi</th>
+                                <th class="p-2.5">Tür</th>
+                                <th class="p-2.5">Varlık / Açıklama</th>
+                                <th class="p-2.5">Miktar</th>
+                                <th class="p-2.5">Ort. Alış</th>
+                                <th class="p-2.5">Güncel Fiyat</th>
+                                <th class="p-2.5">Toplam Değer</th>
+                                <th class="p-2.5">Kar / Zarar</th>
+                                <th class="p-2.5 text-center">İşlemler</th>
                             </tr>
                         </thead>
-                        <tbody id="assets-table-body" class="divide-y divide-slate-800/60">
-                            <!-- JS ile dolacak -->
-                        </tbody>
+                        <tbody id="assets-table-body" class="divide-y divide-slate-800/60"></tbody>
                     </table>
                 </div>
 
-                <!-- Mobil Ekran İçin (1 Kayıt 2 Satır Yapısı) -->
-                <div id="assets-mobile-list" class="md:hidden divide-y divide-slate-800/60 text-xs">
-                    <!-- JS ile dolacak -->
-                </div>
+                <!-- Mobil Liste (1 Kayıt 2 Satır, Küçültülmüş Yazı Boyutları) -->
+                <div id="assets-mobile-list" class="md:hidden divide-y divide-slate-800/60 text-[11px]"></div>
             </div>
         </div>
 
@@ -183,25 +179,28 @@
 
             <div class="bg-slate-900/90 border border-slate-800 rounded-3xl shadow-xl overflow-hidden">
                 <div class="p-5 border-b border-slate-800 font-bold text-slate-200">Alım ve Satım Defteri (Tüm Kayıtlar)</div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs whitespace-nowrap">
+                
+                <!-- Masaüstü Tablo -->
+                <div class="hidden md:block overflow-x-auto">
+                    <table class="w-full text-left text-[11px] whitespace-nowrap">
                         <thead class="bg-slate-950/60 text-slate-400 border-b border-slate-800 uppercase tracking-wider">
                             <tr>
-                                <th class="p-3">Tarih</th>
-                                <th class="p-3">İşlem Türü</th>
-                                <th class="p-3">Varlık Adı</th>
-                                <th class="p-3">Miktar</th>
-                                <th class="p-3">Fiyat (Birim)</th>
-                                <th class="p-3">Toplam Tutar</th>
-                                <th class="p-3">Gerçekleşen K/Z</th>
-                                <th class="p-3 text-center">Kayıt Sil</th>
+                                <th class="p-2.5">Tarih</th>
+                                <th class="p-2.5">İşlem Türü</th>
+                                <th class="p-2.5">Varlık Adı</th>
+                                <th class="p-2.5">Miktar</th>
+                                <th class="p-2.5">Fiyat (Birim)</th>
+                                <th class="p-2.5">Toplam Tutar</th>
+                                <th class="p-2.5">Gerçekleşen K/Z</th>
+                                <th class="p-2.5 text-center">Kayıt Sil</th>
                             </tr>
                         </thead>
-                        <tbody id="history-table-body" class="divide-y divide-slate-800/60">
-                            <!-- JS ile dolacak -->
-                        </tbody>
+                        <tbody id="history-table-body" class="divide-y divide-slate-800/60"></tbody>
                     </table>
                 </div>
+
+                <!-- Mobil Liste (1 Kayıt 2 Satır) -->
+                <div id="history-mobile-list" class="md:hidden divide-y divide-slate-800/60 text-[11px]"></div>
             </div>
         </div>
 
@@ -266,24 +265,27 @@
 
             <div class="bg-slate-900/90 border border-slate-800 rounded-3xl shadow-xl overflow-hidden">
                 <div class="p-5 border-b border-slate-800 font-bold text-slate-200">Harcama Geçmişi</div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs whitespace-nowrap">
+                
+                <!-- Masaüstü Tablo -->
+                <div class="hidden md:block overflow-x-auto">
+                    <table class="w-full text-left text-[11px] whitespace-nowrap">
                         <thead class="bg-slate-950/60 text-slate-400 border-b border-slate-800 uppercase tracking-wider">
                             <tr>
-                                <th class="p-3">Tarih</th>
-                                <th class="p-3">Harcama Yeri</th>
-                                <th class="p-3">Ne İçin / Detay</th>
-                                <th class="p-3">Kategori</th>
-                                <th class="p-3">Tutar</th>
-                                <th class="p-3">Taksit</th>
-                                <th class="p-3 text-center">İşlemler</th>
+                                <th class="p-2.5">Tarih</th>
+                                <th class="p-2.5">Harcama Yeri</th>
+                                <th class="p-2.5">Ne İçin / Detay</th>
+                                <th class="p-2.5">Kategori</th>
+                                <th class="p-2.5">Tutar</th>
+                                <th class="p-2.5">Taksit</th>
+                                <th class="p-2.5 text-center">İşlemler</th>
                             </tr>
                         </thead>
-                        <tbody id="expenses-table-body" class="divide-y divide-slate-800/60">
-                            <!-- JS ile dolacak -->
-                        </tbody>
+                        <tbody id="expenses-table-body" class="divide-y divide-slate-800/60"></tbody>
                     </table>
                 </div>
+
+                <!-- Mobil Liste (1 Kayıt 2 Satır) -->
+                <div id="expenses-mobile-list" class="md:hidden divide-y divide-slate-800/60 text-[11px]"></div>
             </div>
         </div>
 
@@ -671,6 +673,7 @@
                 { val: 'VESBE', text: 'VESBE - Vestel Beyaz Eşya' },
                 { val: 'VESTL', text: 'VESTL - Vestel' },
                 { val: 'YEOTK', text: 'YEOTK - YEO Teknoloji' },
+                { val: 'YKBNK', text: 'YKBNK - Yapı Kredi' },
                 { val: 'YYLGD', text: 'YYLGD - Yayla Agro Gıda' },
                 { val: 'ZOREN', text: 'ZOREN - Zorlu Enerji' }
             ],
@@ -825,30 +828,7 @@
             const val = parseFloat(newPriceVal);
             if (!isNaN(val) && val >= 0) {
                 asset.currentPrice = val;
-                const cost = asset.amount * asset.buyPrice;
-                const value = asset.amount * asset.currentPrice;
-                const pnl = value - cost;
-                const pnlPercent = cost > 0 ? (pnl / cost) * 100 : 0;
-
-                const valEl = document.getElementById(`val-${id}`);
-                const pnlEl = document.getElementById(`pnl-${id}`);
-                const valElMob = document.getElementById(`val-mob-${id}`);
-                const pnlElMob = document.getElementById(`pnl-mob-${id}`);
-
-                if (valEl) valEl.innerText = formatCurrency(value);
-                if (valElMob) valElMob.innerText = formatCurrency(value);
-
-                const pnlText = `${pnl >= 0 ? '+' : ''}${formatCurrency(pnl)} (%${pnlPercent.toFixed(2)})`;
-                const pnlClass = `font-bold ${pnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
-
-                if (pnlEl) {
-                    pnlEl.innerText = pnlText;
-                    pnlEl.className = `p-3 ${pnlClass}`;
-                }
-                if (pnlElMob) {
-                    pnlElMob.innerText = pnlText;
-                    pnlElMob.className = pnlClass;
-                }
+                renderAssets(); // Anlık Kar/Zarar ve Toplam değerlerin doğrudan her iki görünümde de tam hesaplanıp yenilenmesi için tetiklendi
             }
         }
 
@@ -859,6 +839,7 @@
             if (!isNaN(val) && val >= 0) {
                 asset.currentPrice = val;
                 localStorage.setItem('fin_assets', JSON.stringify(assets));
+                renderAssets();
             }
         }
 
@@ -1002,13 +983,16 @@
 
         function renderHistory() {
             const tbody = document.getElementById('history-table-body');
+            const mobileList = document.getElementById('history-mobile-list');
             tbody.innerHTML = '';
+            mobileList.innerHTML = '';
             
             let totalRealizedPnl = 0;
             let totalRealizedCost = 0;
 
             if (historyLog.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="8" class="p-8 text-center text-slate-500">İşlem geçmişi bulunmuyor.</td></tr>`;
+                mobileList.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">İşlem geçmişi bulunmuyor.</div>`;
                 document.getElementById('realized-pnl-val').innerText = `₺0.00 (%0.00)`;
                 document.getElementById('total-history-count').innerText = 0;
                 return;
@@ -1031,35 +1015,62 @@
 
             sortedHistory.forEach(h => {
                 const isSell = h.type === 'SATIŞ';
+                
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-800/40 transition";
                 
                 let pnlHtml = '-';
+                let pnlMobHtml = '-';
                 if (isSell) {
                     const pnl = h.pnl || 0;
                     const pnlPct = h.pnlPercent || 0;
                     pnlHtml = `<span class="font-bold ${pnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${pnl >= 0 ? '+' : ''}${formatCurrency(pnl)} (%${pnlPct.toFixed(2)})</span>`;
+                    pnlMobHtml = `<span class="font-bold ${pnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${pnl >= 0 ? '+' : ''}${formatCurrency(pnl)} (%${pnlPct.toFixed(2)})</span>`;
                 }
 
                 tr.innerHTML = `
-                    <td class="p-3 text-slate-300">${formatDateTR(h.date)}</td>
-                    <td class="p-3">
+                    <td class="p-2.5 text-slate-300">${formatDateTR(h.date)}</td>
+                    <td class="p-2.5">
                         <span class="px-2.5 py-0.5 rounded-xl text-xs font-bold border ${isSell ? 'bg-amber-950/60 text-amber-400 border-amber-900/60' : 'bg-emerald-950/60 text-emerald-400 border-emerald-900/60'}">
                             ${h.type}
                         </span>
                     </td>
-                    <td class="p-3 font-semibold text-slate-200">${h.assetName}</td>
-                    <td class="p-3 text-slate-300">${h.amount.toLocaleString('tr-TR')}</td>
-                    <td class="p-3 text-slate-300">${formatCurrency(h.price)}</td>
-                    <td class="p-3 font-bold text-slate-100">${formatCurrency(h.total)}</td>
-                    <td class="p-3">${pnlHtml}</td>
-                    <td class="p-3 text-center">
+                    <td class="p-2.5 font-semibold text-slate-200">${h.assetName}</td>
+                    <td class="p-2.5 text-slate-300">${h.amount.toLocaleString('tr-TR')}</td>
+                    <td class="p-2.5 text-slate-300">${formatCurrency(h.price)}</td>
+                    <td class="p-2.5 font-bold text-slate-100">${formatCurrency(h.total)}</td>
+                    <td class="p-2.5">${pnlHtml}</td>
+                    <td class="p-2.5 text-center">
                         <button onclick="deleteHistoryItem(${h.id})" class="w-7 h-7 rounded-xl bg-slate-800/60 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 transition flex items-center justify-center mx-auto" title="Kayıt Sil">
                             <i class="fa-solid fa-trash-can text-xs"></i>
                         </button>
                     </td>
                 `;
                 tbody.appendChild(tr);
+
+                const mobDiv = document.createElement('div');
+                mobDiv.className = "p-3.5 space-y-2";
+                mobDiv.innerHTML = `
+                    <div class="flex justify-between items-center gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] text-slate-400 bg-slate-950 px-2 py-0.5 rounded-lg border border-slate-800">${formatDateTR(h.date)}</span>
+                            <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold border ${isSell ? 'bg-amber-950/60 text-amber-400 border-amber-900/60' : 'bg-emerald-950/60 text-emerald-400 border-emerald-900/60'}">${h.type}</span>
+                            <span class="font-bold text-slate-100 text-xs">${h.assetName}</span>
+                        </div>
+                        <button onclick="deleteHistoryItem(${h.id})" class="px-2 py-1 bg-slate-800 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 rounded-lg text-[10px] transition" title="Sil"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                    <div class="flex justify-between items-center bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80 gap-2 text-[11px]">
+                        <div class="text-slate-300">
+                            Miktar: <strong class="text-slate-100">${h.amount.toLocaleString('tr-TR')}</strong><br>
+                            Birim: ${formatCurrency(h.price)}
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-slate-100 text-xs">${formatCurrency(h.total)}</div>
+                            <div class="text-[10px] font-semibold">${pnlMobHtml}</div>
+                        </div>
+                    </div>
+                `;
+                mobileList.appendChild(mobDiv);
             });
         }
 
@@ -1102,26 +1113,25 @@
                 totalVal += value;
                 totalCost += cost;
 
-                // 1. Masaüstü Tablo Satırı
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-800/40 transition";
                 tr.innerHTML = `
-                    <td class="p-3 text-slate-300">${formatDateTR(a.date)}</td>
-                    <td class="p-3"><span class="px-2.5 py-0.5 bg-slate-950 rounded-xl text-xs font-bold text-emerald-400 border border-slate-800">${a.type}</span></td>
-                    <td class="p-3 font-semibold text-slate-200">${a.name}</td>
-                    <td class="p-3 text-slate-300">${a.amount.toLocaleString('tr-TR')}</td>
-                    <td class="p-3 text-slate-300">${formatCurrency(a.buyPrice)}</td>
-                    <td class="p-3">
+                    <td class="p-2.5 text-slate-300">${formatDateTR(a.date)}</td>
+                    <td class="p-2.5"><span class="px-2.5 py-0.5 bg-slate-950 rounded-xl text-xs font-bold text-emerald-400 border border-slate-800">${a.type}</span></td>
+                    <td class="p-2.5 font-semibold text-slate-200">${a.name}</td>
+                    <td class="p-2.5 text-slate-300">${a.amount.toLocaleString('tr-TR')}</td>
+                    <td class="p-2.5 text-slate-300">${formatCurrency(a.buyPrice)}</td>
+                    <td class="p-2.5">
                         <input type="number" step="any" value="${a.currentPrice}" 
                             oninput="updateAssetCurrentPriceTemp(${a.id}, this.value)" 
                             onblur="commitAssetCurrentPrice(${a.id}, this.value)"
                             class="w-28 bg-slate-950 border border-slate-800 rounded-xl px-2 py-1 text-xs font-semibold text-emerald-400 focus:outline-none focus:border-emerald-500 transition">
                     </td>
-                    <td class="p-3 font-bold text-slate-100" id="val-${a.id}">${formatCurrency(value)}</td>
-                    <td class="p-3 font-bold ${pnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}" id="pnl-${a.id}">
+                    <td class="p-2.5 font-bold text-slate-100">${formatCurrency(value)}</td>
+                    <td class="p-2.5 font-bold ${pnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}">
                         ${pnl >= 0 ? '+' : ''}${formatCurrency(pnl)} (%${pnlPercent.toFixed(2)})
                     </td>
-                    <td class="p-3 text-center flex items-center justify-center gap-1">
+                    <td class="p-2.5 text-center flex items-center justify-center gap-1">
                         <button onclick="openEditAssetModal(${a.id})" class="px-2 py-1 bg-blue-600/90 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold transition shadow-md" title="Düzenle"><i class="fa-solid fa-pen"></i></button>
                         <button onclick="openSellModal(${a.id})" class="px-2 py-1 bg-amber-600/90 hover:bg-amber-500 text-white rounded-lg text-xs font-semibold transition shadow-md" title="Sat">Sat</button>
                         <button onclick="deleteAssetRecord(${a.id})" class="px-2 py-1 bg-slate-800 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 rounded-lg text-xs font-semibold transition" title="Sil"><i class="fa-solid fa-trash-can"></i></button>
@@ -1129,11 +1139,9 @@
                 `;
                 tbody.appendChild(tr);
 
-                // 2. Mobil Ekran İçin (1 Kayıt = 2 Satır Blok Yapı)
                 const mobDiv = document.createElement('div');
                 mobDiv.className = "p-3.5 space-y-2";
                 mobDiv.innerHTML = `
-                    <!-- 1. Satır: Tarih, Tür, Varlık Adı ve Aksiyonlar -->
                     <div class="flex justify-between items-center gap-2">
                         <div class="flex items-center gap-2">
                             <span class="text-[10px] text-slate-400 bg-slate-950 px-2 py-0.5 rounded-lg border border-slate-800">${formatDateTR(a.date)}</span>
@@ -1142,13 +1150,12 @@
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditAssetModal(${a.id})" class="px-2 py-1 bg-blue-600/90 hover:bg-blue-500 text-white rounded-lg text-[10px] font-semibold transition" title="Düzenle"><i class="fa-solid fa-pen"></i></button>
-                            <button onclick="openSellModal(${a.id})" class="px-2 py-1 bg-amber-600/90 hover:bg-amber-500 text-white rounded-lg text-[10px] font-semibold transition" title="Sat">Sat</button>
-                            <button onclick="deleteAssetRecord(${a.id})" class="px-2 py-1 bg-slate-800 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 rounded-lg text-[10px] font-semibold transition" title="Sil"><i class="fa-solid fa-trash-can"></i></button>
+                            <button onclick="openSellModal(${a.id})" class="px-2 py-1 bg-amber-600/90 hover:bg-amber-500 text-white rounded-lg text-[10px] font-semibold transition" title="Sat"><i class="fa-solid fa-arrow-trend-down"></i></button>
+                            <button onclick="deleteAssetRecord(${a.id})" class="px-2 py-1 bg-slate-800 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 rounded-lg text-[10px] transition" title="Sil"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
                     </div>
-                    <!-- 2. Satır: Miktar, Alış, Güncel Fiyat Girişi, Toplam ve K/Z -->
-                    <div class="flex justify-between items-center bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80 gap-2">
-                        <div class="text-[11px] text-slate-300">
+                    <div class="flex justify-between items-center bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80 gap-2 text-[11px]">
+                        <div class="text-slate-300">
                             Miktar: <strong class="text-slate-100">${a.amount.toLocaleString('tr-TR')}</strong><br>
                             Alış: ${formatCurrency(a.buyPrice)}
                         </div>
@@ -1160,8 +1167,8 @@
                                 class="w-24 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-xs font-semibold text-emerald-400 text-center focus:outline-none focus:border-emerald-500 transition">
                         </div>
                         <div class="text-right">
-                            <div class="font-bold text-slate-100 text-xs" id="val-mob-${a.id}">${formatCurrency(value)}</div>
-                            <div class="text-[10px] font-bold ${pnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}" id="pnl-mob-${a.id}">
+                            <div class="font-bold text-slate-100 text-xs">${formatCurrency(value)}</div>
+                            <div class="text-[10px] font-bold ${pnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}">
                                 ${pnl >= 0 ? '+' : ''}${formatCurrency(pnl)} (%${pnlPercent.toFixed(2)})
                             </div>
                         </div>
@@ -1246,11 +1253,14 @@
 
         function renderExpenses() {
             const tbody = document.getElementById('expenses-table-body');
+            const mobileList = document.getElementById('expenses-mobile-list');
             tbody.innerHTML = '';
+            mobileList.innerHTML = '';
             let totalExp = 0;
 
             if (expenses.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-500">Henüz harcama eklenmemiş.</td></tr>`;
+                mobileList.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">Henüz harcama eklenmemiş.</div>`;
                 document.getElementById('total-expense-val').innerText = formatCurrency(0);
                 document.getElementById('total-expense-count').innerText = 0;
                 return;
@@ -1262,18 +1272,44 @@
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-800/40 transition";
                 tr.innerHTML = `
-                    <td class="p-3 text-slate-300">${formatDateTR(ex.date)}</td>
-                    <td class="p-3 font-semibold text-slate-200">${ex.place}</td>
-                    <td class="p-3 text-slate-300">${ex.purpose}</td>
-                    <td class="p-3"><span class="px-2.5 py-0.5 bg-slate-950 rounded-xl text-xs font-bold text-rose-400 border border-slate-800">${ex.category}</span></td>
-                    <td class="p-3 font-bold text-rose-400">${formatCurrency(ex.price)}</td>
-                    <td class="p-3 text-slate-300"><span class="px-2.5 py-1 bg-slate-800/60 rounded-lg text-xs">${ex.installment}</span></td>
-                    <td class="p-3 text-center flex items-center justify-center gap-1.5">
+                    <td class="p-2.5 text-slate-300">${formatDateTR(ex.date)}</td>
+                    <td class="p-2.5 font-semibold text-slate-200">${ex.place}</td>
+                    <td class="p-2.5 text-slate-300">${ex.purpose}</td>
+                    <td class="p-2.5"><span class="px-2.5 py-0.5 bg-slate-950 rounded-xl text-xs font-bold text-rose-400 border border-slate-800">${ex.category}</span></td>
+                    <td class="p-2.5 font-bold text-rose-400">${formatCurrency(ex.price)}</td>
+                    <td class="p-2.5 text-slate-300"><span class="px-2.5 py-1 bg-slate-800/60 rounded-lg text-xs">${ex.installment}</span></td>
+                    <td class="p-2.5 text-center flex items-center justify-center gap-1.5">
                         <button onclick="openEditExpenseModal(${ex.id})" class="w-7 h-7 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white transition flex items-center justify-center" title="Düzenle"><i class="fa-solid fa-pen text-xs"></i></button>
                         <button onclick="deleteExpense(${ex.id})" class="w-7 h-7 rounded-xl bg-slate-800/60 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 transition flex items-center justify-center" title="Sil"><i class="fa-solid fa-trash-can text-xs"></i></button>
                     </td>
                 `;
                 tbody.appendChild(tr);
+
+                const mobDiv = document.createElement('div');
+                mobDiv.className = "p-3.5 space-y-2";
+                mobDiv.innerHTML = `
+                    <div class="flex justify-between items-center gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] text-slate-400 bg-slate-950 px-2 py-0.5 rounded-lg border border-slate-800">${formatDateTR(ex.date)}</span>
+                            <span class="font-bold text-slate-100 text-xs">${ex.place}</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button onclick="openEditExpenseModal(${ex.id})" class="px-2 py-1 bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white rounded-lg text-[10px] transition" title="Düzenle"><i class="fa-solid fa-pen"></i></button>
+                            <button onclick="deleteExpense(${ex.id})" class="px-2 py-1 bg-slate-800 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 rounded-lg text-[10px] transition" title="Sil"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80 gap-2 text-[11px]">
+                        <div class="text-slate-300">
+                            Detay: <strong class="text-slate-100">${ex.purpose}</strong><br>
+                            Kategori: <span class="text-rose-400">${ex.category}</span>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-rose-400 text-xs">${formatCurrency(ex.price)}</div>
+                            <div class="text-[10px] text-slate-400">${ex.installment}</div>
+                        </div>
+                    </div>
+                `;
+                mobileList.appendChild(mobDiv);
             });
 
             document.getElementById('total-expense-val').innerText = formatCurrency(totalExp);
