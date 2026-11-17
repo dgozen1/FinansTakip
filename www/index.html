@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Varlık ve Harcama Takip Asistanı</title>
-    <!-- SheetJS (Excel Export/Import için kütüphane) -->
+    <!-- SheetJS (Excel Export/Import) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -43,16 +43,16 @@
 
             <!-- Sekme Butonları -->
             <div class="flex bg-slate-900/90 border border-slate-800 p-1 rounded-2xl gap-1 flex-wrap justify-center shadow-inner">
-                <button onclick="switchTab('assets')" id="btn-assets" class="px-3 py-2 rounded-xl font-medium text-xs transition-all duration-200 flex items-center gap-1.5 bg-emerald-600 text-white shadow-md shadow-emerald-900/30">
+                <button type="button" onclick="switchTab('assets')" id="btn-assets" class="px-3 py-2 rounded-xl font-medium text-xs transition-all duration-200 flex items-center gap-1.5 bg-emerald-600 text-white shadow-md shadow-emerald-900/30">
                     <i class="fa-solid fa-chart-pie"></i> Aktif Varlıklar
                 </button>
-                <button onclick="switchTab('history')" id="btn-history" class="px-3 py-2 rounded-xl font-medium text-xs transition-all duration-200 flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800/50">
+                <button type="button" onclick="switchTab('history')" id="btn-history" class="px-3 py-2 rounded-xl font-medium text-xs transition-all duration-200 flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800/50">
                     <i class="fa-solid fa-clock-rotate-left"></i> İşlem Geçmişi
                 </button>
-                <button onclick="switchTab('expenses')" id="btn-expenses" class="px-3 py-2 rounded-xl font-medium text-xs transition-all duration-200 flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800/50">
+                <button type="button" onclick="switchTab('expenses')" id="btn-expenses" class="px-3 py-2 rounded-xl font-medium text-xs transition-all duration-200 flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800/50">
                     <i class="fa-solid fa-receipt"></i> Harcamalar
                 </button>
-                <button onclick="switchTab('reports')" id="btn-reports" class="px-3 py-2 rounded-xl font-medium text-xs transition-all duration-200 flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800/50">
+                <button type="button" onclick="switchTab('reports')" id="btn-reports" class="px-3 py-2 rounded-xl font-medium text-xs transition-all duration-200 flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800/50">
                     <i class="fa-solid fa-chart-line"></i> Raporlar
                 </button>
             </div>
@@ -1585,68 +1585,84 @@
             }
         }
 
+        // Sağlamlaştırılmış Excel Dışa Aktarım Fonksiyonu
         function exportDataExcel() {
-            if (typeof XLSX === 'undefined') {
-                alert("Excel kütüphanesi yüklenemedi.");
-                return;
+            try {
+                if (typeof XLSX === 'undefined') {
+                    alert("Excel kütüphanesi (SheetJS) henüz yüklenemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.");
+                    return;
+                }
+
+                const wb = XLSX.utils.book_new();
+
+                const assetRows = assets.map(a => ({
+                    "Alım Tarihi": formatDateTR(a.date),
+                    "Tür": a.type,
+                    "Varlık Adı": a.name,
+                    "Miktar": a.amount,
+                    "Alış Fiyatı": a.buyPrice,
+                    "Güncel Fiyat": a.currentPrice,
+                    "Toplam Değer": a.amount * a.currentPrice,
+                    "Kar / Zarar (TL)": (a.amount * a.currentPrice) - (a.amount * a.buyPrice)
+                }));
+                const wsAssets = XLSX.utils.json_to_sheet(assetRows.length ? assetRows : [{ "Bilgi": "Aktif varlık bulunmuyor." }]);
+                XLSX.utils.book_append_sheet(wb, wsAssets, "Aktif Varlıklar");
+
+                const historyRows = historyLog.map(h => ({
+                    "Tarih": formatDateTR(h.date),
+                    "İşlem Türü": h.type,
+                    "Varlık Adı": h.assetName,
+                    "Miktar": h.amount,
+                    "Birim Fiyat": h.price,
+                    "Toplam Tutar": h.total,
+                    "Gerçekleşen K/Z (TL)": h.pnl || 0,
+                    "Gerçekleşen K/Z (%)": h.pnlPercent ? `%${h.pnlPercent.toFixed(2)}` : '-'
+                }));
+                const wsHistory = XLSX.utils.json_to_sheet(historyRows.length ? historyRows : [{ "Bilgi": "İşlem geçmişi bulunmuyor." }]);
+                XLSX.utils.book_append_sheet(wb, wsHistory, "İşlem Geçmişi");
+
+                const expenseRows = expenses.map(e => ({
+                    "Tarih": formatDateTR(e.date),
+                    "Harcama Yeri": e.place,
+                    "Ne İçin / Detay": e.purpose,
+                    "Kategori": e.category,
+                    "Tutar (TL)": e.price,
+                    "Taksit Durumu": e.installment
+                }));
+                const wsExpenses = XLSX.utils.json_to_sheet(expenseRows.length ? expenseRows : [{ "Bilgi": "Harcama kaydı bulunmuyor." }]);
+                XLSX.utils.book_append_sheet(wb, wsExpenses, "Harcamalar");
+
+                XLSX.writeFile(wb, `Finans_Takip_Raporu_${new Date().toISOString().split('T')[0]}.xlsx`);
+            } catch (err) {
+                console.error("Excel aktarım hatası:", err);
+                alert("Excel dosyası oluşturulurken bir hata oluştu: " + err.message);
             }
-
-            const wb = XLSX.utils.book_new();
-
-            const assetRows = assets.map(a => ({
-                "Alım Tarihi": formatDateTR(a.date),
-                "Tür": a.type,
-                "Varlık Adı": a.name,
-                "Miktar": a.amount,
-                "Alış Fiyatı": a.buyPrice,
-                "Güncel Fiyat": a.currentPrice,
-                "Toplam Değer": a.amount * a.currentPrice,
-                "Kar / Zarar (TL)": (a.amount * a.currentPrice) - (a.amount * a.buyPrice)
-            }));
-            XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(assetRows), "Aktif Varlıklar");
-
-            const historyRows = historyLog.map(h => ({
-                "Tarih": formatDateTR(h.date),
-                "İşlem Türü": h.type,
-                "Varlık Adı": h.assetName,
-                "Miktar": h.amount,
-                "Birim Fiyat": h.price,
-                "Toplam Tutar": h.total,
-                "Gerçekleşen K/Z (TL)": h.pnl || 0,
-                "Gerçekleşen K/Z (%)": h.pnlPercent ? `%${h.pnlPercent.toFixed(2)}` : '-'
-            }));
-            XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(historyRows), "İşlem Geçmişi");
-
-            const expenseRows = expenses.map(e => ({
-                "Tarih": formatDateTR(e.date),
-                "Harcama Yeri": e.place,
-                "Ne İçin / Detay": e.purpose,
-                "Kategori": e.category,
-                "Tutar (TL)": e.price,
-                "Taksit Durumu": e.installment
-            }));
-            XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(expenseRows), "Harcamalar");
-
-            XLSX.writeFile(wb, `Finans_Takip_Raporu_${new Date().toISOString().split('T')[0]}.xlsx`);
         }
 
+        // Sağlamlaştırılmış JSON Yedekleme Fonksiyonu
         function exportDataJSON() {
-            const backupData = {
-                version: "1.0",
-                exportDate: new Date().toISOString(),
-                assets: assets,
-                historyLog: historyLog,
-                expenses: expenses
-            };
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
-            const downloadAnchor = document.createElement('a');
-            downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", `finans_takip_yedek_${new Date().toISOString().split('T')[0]}.json`);
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            downloadAnchor.remove();
+            try {
+                const backupData = {
+                    version: "1.0",
+                    exportDate: new Date().toISOString(),
+                    assets: assets,
+                    historyLog: historyLog,
+                    expenses: expenses
+                };
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
+                const downloadAnchor = document.createElement('a');
+                downloadAnchor.setAttribute("href", dataStr);
+                downloadAnchor.setAttribute("download", `finans_takip_yedek_${new Date().toISOString().split('T')[0]}.json`);
+                document.body.appendChild(downloadAnchor);
+                downloadAnchor.click();
+                downloadAnchor.remove();
+            } catch (err) {
+                console.error("JSON yedekleme hatası:", err);
+                alert("Yedekleme dosyası oluşturulamadı.");
+            }
         }
 
+        // Sağlamlaştırılmış JSON Yükleme Fonksiyonu
         function importDataJSON(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -1665,7 +1681,8 @@
                         alert("Geçersiz yedek dosya formatı!");
                     }
                 } catch (err) {
-                    alert("Dosya okunurken hata oluştu.");
+                    console.error("Yükleme hatası:", err);
+                    alert("Dosya okunurken veya ayrıştırılırken hata oluştu.");
                 }
                 event.target.value = '';
             };
